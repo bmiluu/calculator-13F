@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, type ReactNode } from "react"
+import React, { useState, type ReactNode } from "react"
+import { ThemeContext } from "./ThemeContext"
 
-interface ThemeContextType {
+export interface ThemeContextType {
   bgColor: string;
   textColor: string;
   dispColor: string;
@@ -28,8 +29,6 @@ interface ThemeContextType {
   setDelReShadowColor: React.Dispatch<React.SetStateAction<string>>;
   setEqualShadowColor: React.Dispatch<React.SetStateAction<string>>;
 }
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 interface ThemeProviderProps {
   children: ReactNode
@@ -77,11 +76,3 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     </ThemeContext.Provider>
   );
 }
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};

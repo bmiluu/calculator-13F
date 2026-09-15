@@ -1,6 +1,6 @@
 import { useState } from "react"
 import SwitchButton from "./SwitchButton"
-import { useTheme } from "../context/ThemeContextProvider"
+import { useTheme } from "../context/ThemeContext"
 
 const ThreeStateSwitch = () => {
   const [btnIdx, setBtnIdx] = useState(1)
@@ -9,7 +9,7 @@ const ThreeStateSwitch = () => {
     setTglKbdBg,
     setKbdBgColor, setKbdkeytextColor,
     setShadowColor, setDelReBackColor,
-    setEqualColor, setEqualBgColor,
+    setEqualBgColor,
     setDelReShadowColor, setEqualShadowColor
   } = useTheme()
 
@@ -63,9 +63,9 @@ const ThreeStateSwitch = () => {
         <span className="text-xs" style={{color: textColor}}>3</span>
       </div>
       <div className="flex justify-between items-center rounded-full p-1 w-14 h-6" style={{backgroundColor:tglkbdbg}}>
-        <SwitchButton handleClick={handleClickTheme1} isActive={btnIdx === 1} btnColor={'rgb(208,63,47)'}></SwitchButton>
-        <SwitchButton handleClick={handleClickTheme2} isActive={btnIdx === 2} btnColor={'rgb(202,85,2)'}></SwitchButton>
-        <SwitchButton handleClick={handleClickTheme3} isActive={btnIdx === 3} btnColor={'rgb(0,224,209)'}></SwitchButton>
+        <SwitchButton label="Theme 1" handleClick={handleClickTheme1} isActive={btnIdx === 1} btnColor={'rgb(208,63,47)'}></SwitchButton>
+        <SwitchButton label="Theme 2" handleClick={handleClickTheme2} isActive={btnIdx === 2} btnColor={'rgb(202,85,2)'}></SwitchButton>
+        <SwitchButton label="Theme 3" handleClick={handleClickTheme3} isActive={btnIdx === 3} btnColor={'rgb(0,224,209)'}></SwitchButton>
       </div>
     </div>
   )

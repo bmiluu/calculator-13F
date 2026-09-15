@@ -66,8 +66,30 @@
 }
 
 @theme {
-  /* Mappt sie auf Tailwind-Utility-Klassen */
   --font-spartan: var(--font-family);
   --text-numbers: var(--font-size-numbers);
   --font-calculator-bold: var(--font-weight-bold);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; font-family: var(--font-family); font-weight: var(--font-weight-bold); }
+button { border: 0; font: inherit; cursor: pointer; }
+.calculator { min-height: 100vh; padding: 2rem 1.5rem 3rem; transition: background-color 250ms ease; }
+.calculator-inner { width: min(100%, 33.75rem); margin: 0 auto; }
+.modeBox { height: 3rem; }
+.modeBox > span:first-child { font-size: 2rem; letter-spacing: 0; }
+.display { display: block; width: 100%; min-height: 8rem; margin: 1.5rem 0; padding: 1.5rem; overflow: auto; color: inherit; font-size: clamp(2rem, 8vw, 3rem); text-align: right; border-radius: 0.5rem; }
+.keypad { padding: 1.5rem; border-radius: 0.5rem; }
+.key-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.calc-button { min-height: 3.5rem; border-radius: 0.4rem; font-size: 2rem; line-height: 1; transition: transform 75ms ease, filter 150ms ease; }
+.calc-button:hover { filter: brightness(1.1); }
+.calc-button:active { transform: translateY(0.2rem); }
+.calc-button.control { font-size: 1.25rem; color: white; }
+.calc-button.equal { font-size: 1.5rem; }
+.calc-button.wide { grid-column: span 2; }
+@media (max-width: 420px) {
+  .calculator { padding: 1.5rem 1rem 2rem; }
+  .keypad { padding: 1.25rem; }
+  .key-grid { gap: 0.75rem; }
+  .calc-button { min-height: 3.25rem; }
 }

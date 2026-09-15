@@ -1,27 +1,22 @@
-import React from 'react'
-import { useTheme } from '../context/ThemeContextProvider'
+import { useTheme } from '../context/ThemeContext'
 import CalcButton from './CalcButton'
 
-const KeyBoard = () => {
-    const { tglkbdbg } = useTheme()
+interface KeyBoardProps {
+    onAction: (action: string) => void;
+}
+
+const KeyBoard = ({ onAction }: KeyBoardProps) => {
+    const { tglkbdbg, delreBackColor, equalBgColor, delreShadowColor, equalShadowColor, equalColor } = useTheme()
     return (
-        <div className='w-fit h-fit rounded-lg flex p-6 md:p-5 items-center justify-center' style={{ backgroundColor: tglkbdbg }}>
-            <div className='w-fit flex flex-wrap md:gap-x-[0.75rem] md:gap-y-[0.82rem] gap-x-[0.8rem] gap-y-[0.9rem] sm:gap-x-[0.2rem] sm:gap-y-[0.9rem]'>
-                <CalcButton>7</CalcButton>
-                <CalcButton>8</CalcButton>
-                <CalcButton >9</CalcButton>
-                <CalcButton>4</CalcButton>
-                <CalcButton>5</CalcButton>
-                <CalcButton>6</CalcButton>
-                <CalcButton>+</CalcButton>
-                <CalcButton>1</CalcButton>
-                <CalcButton>2</CalcButton>
-                <CalcButton >3</CalcButton>
-                <CalcButton >−</CalcButton>
-                <CalcButton >.</CalcButton>
-                <CalcButton >0</CalcButton>
-                <CalcButton >/</CalcButton>
-                <CalcButton >x</CalcButton>
+        <div className="keypad" style={{ backgroundColor: tglkbdbg }}>
+            <div className="key-grid">
+                {['7', '8', '9', 'delete', '4', '5', '6', '+', '1', '2', '3', '-', '.', '0', '/', '*'].map((key) => (
+                    <CalcButton key={key} action={key === 'delete' ? 'delete' : key} onAction={onAction} variant={key === 'delete' ? 'control' : 'default'}>
+                        {key === 'delete' ? 'DEL' : key === '*' ? 'x' : key}
+                    </CalcButton>
+                ))}
+                <button type="button" className={`calc-button control wide ${delreBackColor}`} style={{ boxShadow: `0 4px 0 0 ${delreShadowColor}` }} onClick={() => onAction('reset')}>RESET</button>
+                <button type="button" className={`calc-button equal wide ${equalBgColor} ${equalColor}`} style={{ boxShadow: `0 4px 0 0 ${equalShadowColor}` }} onClick={() => onAction('=')}>=</button>
             </div>
         </div>
     )
