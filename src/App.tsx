@@ -1,8 +1,13 @@
-import React from 'react'
+import Header from './components/Header'
+import { ThemeProvider } from './context/ThemeContextProvider'
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <ThemeProvider>
+
+      <Header />
+    </ThemeProvider>
   )
 }
 
